@@ -7,3 +7,6 @@ class Cel:
 Jelen = Cel("Jelen", 15, 15)
 Dzik = Cel("Dzik", 15, 10)
 Zajac = Cel("Zajac", 10, 20)
+
+def setup():
+  size(1000,700)
