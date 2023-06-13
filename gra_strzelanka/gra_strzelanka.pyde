@@ -13,8 +13,7 @@ class Cel:
 Jelen = Cel("Jelen", 15, 15, "data/jelen.png")
 Dzik = Cel("Dzik", 15, 10, "data/dzik.png")
 Zajac = Cel("Zajac", 10, 20, "data/zajac.png")
-
-Celownik = Celownik("data/celownik.png")
+Celownik = Cel("Celownik", 0, 0, "data/celownik.png")
 
 def setup():
     size(1000, 700)
