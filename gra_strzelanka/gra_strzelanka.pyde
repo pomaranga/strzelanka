@@ -55,4 +55,9 @@ def draw():
         image(Jelen.plik, Jelen.x, Jelen.y, 100, 100)  
         image(Dzik.plik, Dzik.x, Dzik.y, 100, 100)  
         image(Zajac.plik, Zajac.x, Zajac.y, 100, 100)
-        image(Celownik.plik, mouseX-25, mouseY-25, 50, 50)  
+        image(Celownik.plik, mouseX-25, mouseY-25, 50, 50) 
+        
+def mousePressed():
+    global start_game
+    if not start_game:
+        start_game = True
