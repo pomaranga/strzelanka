@@ -39,7 +39,7 @@ def setup():
     Celownik.zaladuj_plik(Celownik.sciezka_plik)
 
 def draw():
-    global start_game:
+    global start_game
     if not start_game:
         background(10,150,100) #zmienie na ładny obrazek jak znajdę
         fill(255)
