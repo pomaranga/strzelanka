@@ -31,7 +31,7 @@ Dzik = Cel("Dzik", 15, 5, "data/dzik.png", 100)
 Zajac = Cel("Zajac", 10, 10, "data/zajac.png", 100)
 
 start_game = False
-
+score = 0
 def setup():
     size(1000, 700)
     global celownikImg
@@ -51,7 +51,7 @@ def draw():
         text(u"Kliknij przycisk myszy, aby rozpocząć grę", width/2, height/2)
     else:
         noCursor()
-        background(255)
+        background(250)
         Jelen.poruszaj()  
         Dzik.poruszaj()  
         Zajac.poruszaj()
@@ -60,6 +60,11 @@ def draw():
         image(Dzik.plik, Dzik.x, Dzik.y, Dzik.rozmiar, Dzik.rozmiar)  
         image(Zajac.plik, Zajac.x, Zajac.y, Zajac.rozmiar, Zajac.rozmiar)
         image(celownikImg, mouseX-25, mouseY-25, 50, 50) 
+        
+        fill(0)
+        textSize(23)
+        textAlign(RIGHT, TOP)
+        text("Score: " + str(score), width - 20, 20)
         
 def mousePressed():
     global start_game
