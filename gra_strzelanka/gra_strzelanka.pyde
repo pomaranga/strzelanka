@@ -29,6 +29,7 @@ class Cel:
 Jelen = Cel("Jelen", 15, 7, "data/jelen.png", 100)
 Dzik = Cel("Dzik", 15, 5, "data/dzik.png", 100)
 Zajac = Cel("Zajac", 10, 10, "data/zajac.png", 100)
+Kotek = Cel("Kotek", -10, 8, "data/kotek.png", 100) 
 
 start_game = False
 score = 0
@@ -39,6 +40,7 @@ def setup():
     Dzik.zaladuj_plik(Dzik.sciezka_plik)
     Zajac.zaladuj_plik(Zajac.sciezka_plik)
     celownikImg = loadImage("data/celownik.png")
+    Kotek.zaladuj_plik(Kotek.sciezka_plik)
     
 
 def draw():
@@ -55,11 +57,13 @@ def draw():
         Jelen.poruszaj()  
         Dzik.poruszaj()  
         Zajac.poruszaj()
+        Kotek.poruszaj()
     
         image(Jelen.plik, Jelen.x, Jelen.y, Jelen.rozmiar, Jelen.rozmiar)  
         image(Dzik.plik, Dzik.x, Dzik.y, Dzik.rozmiar, Dzik.rozmiar)  
         image(Zajac.plik, Zajac.x, Zajac.y, Zajac.rozmiar, Zajac.rozmiar)
         image(celownikImg, mouseX-25, mouseY-25, 50, 50) 
+        image(Kotek.plik, Kotek.x, Kotek.y, Kotek.rozmiar, Kotek.rozmiar)
         
         fill(0)
         textSize(23)
