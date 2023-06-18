@@ -83,7 +83,7 @@ def mousePressed():
         start_game = True
 
 def mouseClicked():
-    global pauza, start_game
+    global pauza
     if mouseX > 10 and mouseX < 60 and mouseY > 10 and mouseY < 60:
         pauza = True
     if mouseX > 300 and mouseX < 600 and mouseY > 150 and mouseY < 450 and pauza == True:
