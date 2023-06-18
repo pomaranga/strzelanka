@@ -33,15 +33,17 @@ Kotek = Cel("Kotek", -10, 8, "data/kotek.png", 100)
 
 start_game = False
 score = 0
+pauza = False
 def setup():
     size(1000, 700)
-    global celownikImg
+    global celownikImg, pauzaImg, startImg
     Jelen.zaladuj_plik(Jelen.sciezka_plik)
     Dzik.zaladuj_plik(Dzik.sciezka_plik)
     Zajac.zaladuj_plik(Zajac.sciezka_plik)
     celownikImg = loadImage("data/celownik.png")
     Kotek.zaladuj_plik(Kotek.sciezka_plik)
-    
+    pauzaImg = loadImage("data/pauza.png")
+    startImg = loadImage("data/start.png")
 
 def draw():
     global start_game
@@ -54,10 +56,15 @@ def draw():
     else:
         noCursor()
         background(250)
-        Jelen.poruszaj()  
-        Dzik.poruszaj()  
-        Zajac.poruszaj()
-        Kotek.poruszaj()
+        global pauza
+        if not pauza:
+            image(pauzaImg, 10, 10, 50, 50)
+            Jelen.poruszaj()  
+            Dzik.poruszaj()  
+            Zajac.poruszaj()
+            Kotek.poruszaj()
+        elif pauza:
+            image(startImg, 450, 300, 100, 100)
     
         image(Jelen.plik, Jelen.x, Jelen.y, Jelen.rozmiar, Jelen.rozmiar)  
         image(Dzik.plik, Dzik.x, Dzik.y, Dzik.rozmiar, Dzik.rozmiar)  
@@ -74,3 +81,10 @@ def mousePressed():
     global start_game
     if not start_game:
         start_game = True
+
+def mouseClicked():
+    global pauza, start_game
+    if mouseX > 10 and mouseX < 60 and mouseY > 10 and mouseY < 60:
+        pauza = True
+    if mouseX > 300 and mouseX < 600 and mouseY > 150 and mouseY < 450 and pauza == True:
+        pauza = False
