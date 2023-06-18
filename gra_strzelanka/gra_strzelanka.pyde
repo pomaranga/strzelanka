@@ -36,7 +36,7 @@ score = 0
 pauza = False
 def setup():
     size(1000, 700)
-    global celownikImg, pauzaImg, startImg
+    global celownikImg, pauzaImg, startImg, tloImg
     Jelen.zaladuj_plik(Jelen.sciezka_plik)
     Dzik.zaladuj_plik(Dzik.sciezka_plik)
     Zajac.zaladuj_plik(Zajac.sciezka_plik)
@@ -44,6 +44,7 @@ def setup():
     Kotek.zaladuj_plik(Kotek.sciezka_plik)
     pauzaImg = loadImage("data/pauza.png")
     startImg = loadImage("data/start.png")
+    tloImg = loadImage("data/tlo.jpg")
 
 def draw():
     global start_game
@@ -55,7 +56,7 @@ def draw():
         text(u"Kliknij przycisk myszy, aby rozpocząć grę", width/2, height/2)
     else:
         noCursor()
-        background(250)
+        image(tloImg, 0, 0, width, height)
         global pauza
         if not pauza:
             image(pauzaImg, 10, 10, 50, 50)
