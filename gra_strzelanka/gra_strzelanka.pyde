@@ -31,6 +31,19 @@ Dzik = Cel("Dzik", 15, 5, "data/dzik.png", 100)
 Zajac = Cel("Zajac", 10, 10, "data/zajac.png", 100)
 Kotek = Cel("Kotek", -10, 8, "data/kotek.png", 100) 
 
+# Dodanie koordynatów celów 
+Jelen.x = 100
+Jelen.y = 50
+
+Dzik.x = 200
+Dzik.y = 150
+
+Zajac.x = 300
+Zajac.y = 100
+
+Kotek.x = 400
+Kotek.y = 200
+
 start_game = False
 score = 0
 pauza = False
@@ -84,8 +97,21 @@ def mousePressed():
         start_game = True
 
 def mouseClicked():
-    global pauza
+    global pauza, score
     if mouseX > 10 and mouseX < 60 and mouseY > 10 and mouseY < 60:
         pauza = True
     if mouseX > 300 and mouseX < 600 and mouseY > 150 and mouseY < 450 and pauza == True:
         pauza = False
+    # sprawdzenie czy celownik najeżdża na cel i usunięcie go po trafieniu
+    if mouseX > Jelen.x and mouseX < Jelen.x + Jelen.rozmiar and mouseY > Jelen.y and mouseY < Jelen.y + Jelen.rozmiar:
+        Jelen.x = -200  # Przesuwa cel za ekran
+        Jelen.y = -200
+    if mouseX > Dzik.x and mouseX < Dzik.x + Dzik.rozmiar and mouseY > Dzik.y and mouseY < Dzik.y + Dzik.rozmiar:
+        Dzik.x = -200
+        Dzik.y = -200
+    if mouseX > Zajac.x and mouseX < Zajac.x + Zajac.rozmiar and mouseY > Zajac.y and mouseY < Zajac.y + Zajac.rozmiar:
+        Zajac.x = -200
+        Zajac.y = -200
+    if mouseX > Kotek.x and mouseX < Kotek.x + Kotek.rozmiar and mouseY > Kotek.y and mouseY < Kotek.y + Kotek.rozmiar:
+        Kotek.x = -200
+        Kotek.y = -200
