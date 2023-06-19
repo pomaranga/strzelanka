@@ -106,12 +106,16 @@ def mouseClicked():
     if mouseX > Jelen.x and mouseX < Jelen.x + Jelen.rozmiar and mouseY > Jelen.y and mouseY < Jelen.y + Jelen.rozmiar:
         Jelen.x = -200  # Przesuwa cel za ekran
         Jelen.y = -200
+        score += 20
     if mouseX > Dzik.x and mouseX < Dzik.x + Dzik.rozmiar and mouseY > Dzik.y and mouseY < Dzik.y + Dzik.rozmiar:
         Dzik.x = -200
         Dzik.y = -200
+        score += 10
     if mouseX > Zajac.x and mouseX < Zajac.x + Zajac.rozmiar and mouseY > Zajac.y and mouseY < Zajac.y + Zajac.rozmiar:
         Zajac.x = -200
         Zajac.y = -200
+        score += 30
     if mouseX > Kotek.x and mouseX < Kotek.x + Kotek.rozmiar and mouseY > Kotek.y and mouseY < Kotek.y + Kotek.rozmiar:
         Kotek.x = -200
         Kotek.y = -200
+        score = 0
