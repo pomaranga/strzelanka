@@ -70,8 +70,8 @@ def draw():
         image(Jelen.plik, Jelen.x, Jelen.y, Jelen.rozmiar, Jelen.rozmiar)  
         image(Dzik.plik, Dzik.x, Dzik.y, Dzik.rozmiar, Dzik.rozmiar)  
         image(Zajac.plik, Zajac.x, Zajac.y, Zajac.rozmiar, Zajac.rozmiar)
-        image(celownikImg, mouseX-25, mouseY-25, 50, 50) 
         image(Kotek.plik, Kotek.x, Kotek.y, Kotek.rozmiar, Kotek.rozmiar)
+        image(celownikImg, mouseX-25, mouseY-25, 50, 50) 
         
         fill(0)
         textSize(23)
