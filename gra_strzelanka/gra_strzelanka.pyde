@@ -33,7 +33,7 @@ Kotek = Cel("Kotek", -10, 8, "data/kotek.png", 100)
 Bazant = Cel("Bazant", 15,5, "data/bazant.png", 100)
 Sarna = Cel("Sarna", 15, 10, "data/sarna.png", 100)
 Lis = Cel("Lis", 150, 20, "data/lis.png", 100)
-
+Zyrafa = Cel("Zyrafa", 5, 10, "data/zyrafa.png", 100)
 Boss = Cel("Boss", 100, 15, "data/boss.png", 200)
 
 # Dodanie koordynatów celów 
@@ -58,6 +58,9 @@ Sarna.y = 50
 Lis.x = 150
 Lis.y = 100
 
+Zyrafa.x = 250
+Zyrafa.y = 400
+
 Boss.x = 100
 Boss.y = 300
 
@@ -66,11 +69,12 @@ score = 0
 pauza = False
 def setup():
     size(1000, 700)
-    global celownikImg, pauzaImg, startImg, tloImg, restartImg, tlostartImg
+    global celownikImg, pauzaImg, startImg, tloImg, restartImg, tlostartImg, wyjscieImg
     Jelen.zaladuj_plik(Jelen.sciezka_plik)
     Dzik.zaladuj_plik(Dzik.sciezka_plik)
     Zajac.zaladuj_plik(Zajac.sciezka_plik)
     Lis.zaladuj_plik(Lis.sciezka_plik)
+    Zyrafa.zaladuj_plik(Zyrafa.sciezka_plik)
     celownikImg = loadImage("data/celownik.png")
     Kotek.zaladuj_plik(Kotek.sciezka_plik)
     pauzaImg = loadImage("data/pauza.png")
@@ -105,6 +109,7 @@ def draw():
             Sarna.poruszaj()
             Boss.poruszaj()
             Lis.poruszaj()
+            Zyrafa.poruszaj()
         elif pauza:
             image(startImg, 450, 300, 100, 100)
     
@@ -115,6 +120,7 @@ def draw():
         image(Bazant.plik, Bazant.x, Bazant.y, Bazant.rozmiar, Bazant.rozmiar)
         image(Sarna.plik, Sarna.x, Sarna.y, Sarna.rozmiar, Sarna.rozmiar)
         image(Lis.plik, Lis.x, Lis.y, Lis.rozmiar, Lis.rozmiar)
+        image(Zyrafa.plik, Zyrafa.x, Zyrafa.y, Zyrafa.rozmiar, Zyrafa.rozmiar)
         image(Boss.plik, Boss.x, Boss.y, Boss.rozmiar, Boss.rozmiar)
         image(restartImg, 10, 70, 50, 50)
         image(celownikImg, mouseX-25, mouseY-25, 50, 50) 
@@ -171,6 +177,10 @@ def mouseClicked():
         Lis.x = -200
         Lis.y = -200
         score += 150
+    if mouseX > Zyrafa.x and mouseX < Zyrafa.x + Zyrafa.rozmiar and mouseY > Zyrafa.y and mouseY < Zyrafa.y + Zyrafa.rozmiar and pauza == False:
+        Zyrafa.x = -200
+        Zyrafa.y = -200
+        score += 50
     if mouseX > 930 and mouseX < 1000 and mouseY > 630 and mouseY < 700:
         exit()
 
@@ -197,6 +207,9 @@ def reset():
 
     Lis.x = 150
     Lis.y = 100
+
+    Zyrafa.x = 250
+    Zyrafa.y = 400
 
     Boss.x = 100
     Boss.y = 300
