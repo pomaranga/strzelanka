@@ -31,7 +31,7 @@ Dzik = Cel("Dzik", 15, 5, "data/dzik.png", 100)
 Zajac = Cel("Zajac", 10, 10, "data/zajac.png", 100)
 Kotek = Cel("Kotek", -10, 8, "data/kotek.png", 100)
 Bazant = Cel("Bazant", 15,5, "data/bazant.png", 100)
-Boss = Cel("Boss", 100, 25, "data/boss.png", 200)
+Boss = Cel("Boss", 100, 15, "data/boss.png", 200)
 
 # Dodanie koordynatów celów 
 Jelen.x = 100
