@@ -32,6 +32,8 @@ Zajac = Cel("Zajac", 10, 10, "data/zajac.png", 100)
 Kotek = Cel("Kotek", -10, 8, "data/kotek.png", 100)
 Bazant = Cel("Bazant", 15,5, "data/bazant.png", 100)
 Sarna = Cel("Sarna", 15, 10, "data/sarna.png", 100)
+Lis = Cel("Lis", 150, 20, "data/lis.png", 100)
+
 Boss = Cel("Boss", 100, 15, "data/boss.png", 200)
 
 # Dodanie koordynatów celów 
@@ -53,6 +55,9 @@ Bazant.y = 300
 Sarna.x = 100
 Sarna.y = 50
 
+Lis.x = 150
+Lis.y = 100
+
 Boss.x = 100
 Boss.y = 300
 
@@ -65,6 +70,7 @@ def setup():
     Jelen.zaladuj_plik(Jelen.sciezka_plik)
     Dzik.zaladuj_plik(Dzik.sciezka_plik)
     Zajac.zaladuj_plik(Zajac.sciezka_plik)
+    Lis.zaladuj_plik(Lis.sciezka_plik)
     celownikImg = loadImage("data/celownik.png")
     Kotek.zaladuj_plik(Kotek.sciezka_plik)
     pauzaImg = loadImage("data/pauza.png")
@@ -75,6 +81,7 @@ def setup():
     Sarna.zaladuj_plik(Sarna.sciezka_plik)
     Boss.zaladuj_plik(Boss.sciezka_plik)
     tlostartImg = loadImage("data/tstart.png")
+    wyjscieImg = loadImage("data/exit.png")
 
 def draw():
     global start_game, tlostartImg
@@ -97,6 +104,7 @@ def draw():
             Bazant.poruszaj()
             Sarna.poruszaj()
             Boss.poruszaj()
+            Lis.poruszaj()
         elif pauza:
             image(startImg, 450, 300, 100, 100)
     
@@ -106,9 +114,11 @@ def draw():
         image(Kotek.plik, Kotek.x, Kotek.y, Kotek.rozmiar, Kotek.rozmiar)
         image(Bazant.plik, Bazant.x, Bazant.y, Bazant.rozmiar, Bazant.rozmiar)
         image(Sarna.plik, Sarna.x, Sarna.y, Sarna.rozmiar, Sarna.rozmiar)
+        image(Lis.plik, Lis.x, Lis.y, Lis.rozmiar, Lis.rozmiar)
         image(Boss.plik, Boss.x, Boss.y, Boss.rozmiar, Boss.rozmiar)
         image(restartImg, 10, 70, 50, 50)
         image(celownikImg, mouseX-25, mouseY-25, 50, 50) 
+        image(wyjscieImg, 930, 630, 50, 50)
         
         fill(255)
         textSize(23)
@@ -157,6 +167,12 @@ def mouseClicked():
         score += 100
     if mouseX > 10 and mouseX < 60 and mouseY > 70 and mouseY < 120:
         reset()
+    if mouseX > Lis.x and mouseX < Lis.x + Lis.rozmiar and mouseY > Lis.y and mouseY < Lis.y + Lis.rozmiar and pauza == False:
+        Lis.x = -200
+        Lis.y = -200
+        score += 150
+    if mouseX > 930 and mouseX < 1000 and mouseY > 630 and mouseY < 700:
+        exit()
 
 def reset():
     global score
@@ -178,7 +194,10 @@ def reset():
 
     Sarna.x = 100
     Sarna.y = 50
-    
+
+    Lis.x = 150
+    Lis.y = 100
+
     Boss.x = 100
     Boss.y = 300
     
