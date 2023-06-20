@@ -29,7 +29,8 @@ class Cel:
 Jelen = Cel("Jelen", 15, 7, "data/jelen.png", 100)
 Dzik = Cel("Dzik", 15, 5, "data/dzik.png", 100)
 Zajac = Cel("Zajac", 10, 10, "data/zajac.png", 100)
-Kotek = Cel("Kotek", -10, 8, "data/kotek.png", 100) 
+Kotek = Cel("Kotek", -10, 8, "data/kotek.png", 100)
+Bazant = Cel("Bazant", 15,7, "data/bazant.png", 100)
 
 # Dodanie koordynatów celów 
 Jelen.x = 100
@@ -43,6 +44,9 @@ Zajac.y = 100
 
 Kotek.x = 400
 Kotek.y = 200
+
+Bazant.x = 500
+Bazant.y = 300
 
 start_game = False
 score = 0
@@ -59,6 +63,7 @@ def setup():
     startImg = loadImage("data/start.png")
     restartImg = loadImage("data/restart.png")
     tloImg = loadImage("data/tlo.jpg")
+    Bazant.zaladuj_plik(Bazant.sciezka_plik)
 
 def draw():
     global start_game
@@ -78,6 +83,7 @@ def draw():
             Dzik.poruszaj()  
             Zajac.poruszaj()
             Kotek.poruszaj()
+            Bazant.poruszaj()
         elif pauza:
             image(startImg, 450, 300, 100, 100)
     
@@ -85,6 +91,7 @@ def draw():
         image(Dzik.plik, Dzik.x, Dzik.y, Dzik.rozmiar, Dzik.rozmiar)  
         image(Zajac.plik, Zajac.x, Zajac.y, Zajac.rozmiar, Zajac.rozmiar)
         image(Kotek.plik, Kotek.x, Kotek.y, Kotek.rozmiar, Kotek.rozmiar)
+        image(Bazant.plik, Bazant.x, Bazant.y, Bazant.rozmiar, Bazant.rozmiar)
         image(restartImg, 10, 70, 50, 50)
         image(celownikImg, mouseX-25, mouseY-25, 50, 50) 
         
@@ -117,6 +124,10 @@ def mouseClicked():
         Zajac.x = -200
         Zajac.y = -200
         score += 30
+    if mouseX > Bazant.x and mouseX < Bazant.x + Bazant.rozmiar and mouseY > Bazant.y and mouseY < Bazant.y + Bazant.rozmiar and pauza == False:
+        Bazant.x = -200
+        Bazant.y = -200
+        score += 15
     if mouseX > Kotek.x and mouseX < Kotek.x + Kotek.rozmiar and mouseY > Kotek.y and mouseY < Kotek.y + Kotek.rozmiar and pauza == False:
         Kotek.x = -200
         Kotek.y = -200
@@ -138,3 +149,6 @@ def reset():
   
     Kotek.x = 400
     Kotek.y = 200
+
+    Bazant.x = 500
+    Bazant.y = 300
