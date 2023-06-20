@@ -102,7 +102,7 @@ def draw():
         image(restartImg, 10, 70, 50, 50)
         image(celownikImg, mouseX-25, mouseY-25, 50, 50) 
         
-        fill(0)
+        fill(255)
         textSize(23)
         textAlign(RIGHT, TOP)
         text("Score: " + str(score), width - 20, 20)
