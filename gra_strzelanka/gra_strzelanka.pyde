@@ -31,6 +31,7 @@ Dzik = Cel("Dzik", 15, 5, "data/dzik.png", 100)
 Zajac = Cel("Zajac", 10, 10, "data/zajac.png", 100)
 Kotek = Cel("Kotek", -10, 8, "data/kotek.png", 100)
 Bazant = Cel("Bazant", 15,5, "data/bazant.png", 100)
+Sarna = Cel("Sarna", 15, 10, "data/sarna.png", 100)
 Boss = Cel("Boss", 100, 15, "data/boss.png", 200)
 
 # Dodanie koordynatów celów 
@@ -48,6 +49,9 @@ Kotek.y = 200
 
 Bazant.x = 500
 Bazant.y = 300
+
+Sarna.x = 100
+Sarna.y = 50
 
 Boss.x = 100
 Boss.y = 300
@@ -68,6 +72,7 @@ def setup():
     restartImg = loadImage("data/restart.png")
     tloImg = loadImage("data/tlo.jpg")
     Bazant.zaladuj_plik(Bazant.sciezka_plik)
+    Sarna.zaladuj_plik(Sarna.sciezka_plik)
     Boss.zaladuj_plik(Boss.sciezka_plik)
 
 def draw():
@@ -89,6 +94,7 @@ def draw():
             Zajac.poruszaj()
             Kotek.poruszaj()
             Bazant.poruszaj()
+            Sarna.poruszaj()
             Boss.poruszaj()
         elif pauza:
             image(startImg, 450, 300, 100, 100)
@@ -98,6 +104,7 @@ def draw():
         image(Zajac.plik, Zajac.x, Zajac.y, Zajac.rozmiar, Zajac.rozmiar)
         image(Kotek.plik, Kotek.x, Kotek.y, Kotek.rozmiar, Kotek.rozmiar)
         image(Bazant.plik, Bazant.x, Bazant.y, Bazant.rozmiar, Bazant.rozmiar)
+        image(Sarna.plik, Sarna.x, Sarna.y, Sarna.rozmiar, Sarna.rozmiar)
         image(Boss.plik, Boss.x, Boss.y, Boss.rozmiar, Boss.rozmiar)
         image(restartImg, 10, 70, 50, 50)
         image(celownikImg, mouseX-25, mouseY-25, 50, 50) 
@@ -139,6 +146,10 @@ def mouseClicked():
         Kotek.x = -200
         Kotek.y = -200
         score -= 10 #tu było 0, a wyżej jest, że powinno odejmować 10 punktów, więc zmieniłam
+    if mouseX > Sarna.x and mouseY < Sarna.y + Sarna.rozmiar and mouseY > Sarna.y and mouseY < Sarna.y + Sarna.rozmiar and pauza == False:
+        Sarna.x = -200
+        Sarna.y = -200
+        score += 20
     if mouseX > Boss.x and mouseX < Boss.x + Boss.rozmiar and mouseY > Boss.y and mouseY < Boss.y + Boss.rozmiar and pauza == False:
         Boss.x = -200
         Boss.y = -200
@@ -163,6 +174,9 @@ def reset():
 
     Bazant.x = 500
     Bazant.y = 300
+
+    Sarna.x = 100
+    Sarna.y = 50
     
     Boss.x = 100
     Boss.y = 300
