@@ -34,7 +34,7 @@ Bazant = Cel("Bazant", 15,5, "data/bazant.png", 100)
 Sarna = Cel("Sarna", 15, 10, "data/sarna.png", 100)
 Lis = Cel("Lis", 150, 20, "data/lis.png", 100)
 Zyrafa = Cel("Zyrafa", 5, 10, "data/zyrafa.png", 100)
-Boss = Cel("Boss", 100, 15, "data/boss.png", 200)
+Boss = Cel("Boss", 100, 5, "data/boss.png", 200)
 
 # Dodanie koordynatów celów 
 Jelen.x = 100
@@ -69,7 +69,7 @@ score = 0
 pauza = False
 def setup():
     size(1000, 700)
-    global celownikImg, pauzaImg, startImg, tloImg, restartImg, tlostartImg, wyjscieImg
+    global celownikImg, pauzaImg, startImg, tloImg, restartImg, tlostartImg, wyjscieImg, trafieniabossa
     Jelen.zaladuj_plik(Jelen.sciezka_plik)
     Dzik.zaladuj_plik(Dzik.sciezka_plik)
     Zajac.zaladuj_plik(Zajac.sciezka_plik)
@@ -86,6 +86,7 @@ def setup():
     Boss.zaladuj_plik(Boss.sciezka_plik)
     tlostartImg = loadImage("data/tstart.png")
     wyjscieImg = loadImage("data/exit.png")
+    trafieniabossa = 0
 
 def draw():
     global start_game, tlostartImg
@@ -137,7 +138,7 @@ def mousePressed():
         start_game = True
 
 def mouseClicked():
-    global pauza, score
+    global pauza, score, trafieniabossa
     if mouseX > 10 and mouseX < 60 and mouseY > 10 and mouseY < 60:
         pauza = True
     if mouseX > 300 and mouseX < 600 and mouseY > 150 and mouseY < 450 and pauza == True:
@@ -168,9 +169,11 @@ def mouseClicked():
         Sarna.y = -200
         score += 20
     if mouseX > Boss.x and mouseX < Boss.x + Boss.rozmiar and mouseY > Boss.y and mouseY < Boss.y + Boss.rozmiar and pauza == False:
-        Boss.x = -200
-        Boss.y = -200
         score += 100
+        trafieniabossa += 1
+        if trafieniabossa == 3:
+            Boss.x = -200
+            Boss.y = -200
     if mouseX > 10 and mouseX < 60 and mouseY > 70 and mouseY < 120:
         reset()
     if mouseX > Lis.x and mouseX < Lis.x + Lis.rozmiar and mouseY > Lis.y and mouseY < Lis.y + Lis.rozmiar and pauza == False:
@@ -185,8 +188,9 @@ def mouseClicked():
         exit()
 
 def reset():
-    global score
+    global score, trafieniabossa
     score = 0
+    trafieniabossa = 0
     Jelen.x = 100
     Jelen.y = 50
     
