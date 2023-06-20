@@ -57,7 +57,7 @@ score = 0
 pauza = False
 def setup():
     size(1000, 700)
-    global celownikImg, pauzaImg, startImg, tloImg, restartImg
+    global celownikImg, pauzaImg, startImg, tloImg, restartImg, tlostartImg
     Jelen.zaladuj_plik(Jelen.sciezka_plik)
     Dzik.zaladuj_plik(Dzik.sciezka_plik)
     Zajac.zaladuj_plik(Zajac.sciezka_plik)
@@ -69,11 +69,12 @@ def setup():
     tloImg = loadImage("data/tlo.jpg")
     Bazant.zaladuj_plik(Bazant.sciezka_plik)
     Boss.zaladuj_plik(Boss.sciezka_plik)
+    tlostartImg = loadImage("data/tstart.png")
 
 def draw():
-    global start_game
+    global start_game, tlostartImg
     if not start_game:
-        background(10,150,100) #zmienie na ładny obrazek jak znajdę
+        background(tlostartImg)
         fill(255)
         textSize(40)
         textAlign(CENTER, CENTER)
