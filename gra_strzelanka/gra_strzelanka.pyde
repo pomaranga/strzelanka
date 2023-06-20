@@ -49,7 +49,7 @@ score = 0
 pauza = False
 def setup():
     size(1000, 700)
-    global celownikImg, pauzaImg, startImg, tloImg
+    global celownikImg, pauzaImg, startImg, tloImg, restartImg
     Jelen.zaladuj_plik(Jelen.sciezka_plik)
     Dzik.zaladuj_plik(Dzik.sciezka_plik)
     Zajac.zaladuj_plik(Zajac.sciezka_plik)
@@ -57,6 +57,7 @@ def setup():
     Kotek.zaladuj_plik(Kotek.sciezka_plik)
     pauzaImg = loadImage("data/pauza.png")
     startImg = loadImage("data/start.png")
+    restartImg = loadImage("data/restart.png")
     tloImg = loadImage("data/tlo.jpg")
 
 def draw():
@@ -84,6 +85,7 @@ def draw():
         image(Dzik.plik, Dzik.x, Dzik.y, Dzik.rozmiar, Dzik.rozmiar)  
         image(Zajac.plik, Zajac.x, Zajac.y, Zajac.rozmiar, Zajac.rozmiar)
         image(Kotek.plik, Kotek.x, Kotek.y, Kotek.rozmiar, Kotek.rozmiar)
+        image(restartImg, 10, 70, 50, 50)
         image(celownikImg, mouseX-25, mouseY-25, 50, 50) 
         
         fill(0)
@@ -119,3 +121,20 @@ def mouseClicked():
         Kotek.x = -200
         Kotek.y = -200
         score = 0
+    if mouseX > 10 and mouseX < 60 and mouseY > 70 and mouseY < 120:
+        reset()
+
+def reset():
+    global score
+    score = 0
+    Jelen.x = 100
+    Jelen.y = 50
+    
+    Dzik.x = 200
+    Dzik.y = 150
+    
+    Zajac.x = 300
+    Zajac.y = 100
+  
+    Kotek.x = 400
+    Kotek.y = 200
