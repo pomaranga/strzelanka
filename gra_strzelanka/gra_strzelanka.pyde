@@ -103,19 +103,19 @@ def mouseClicked():
     if mouseX > 300 and mouseX < 600 and mouseY > 150 and mouseY < 450 and pauza == True:
         pauza = False
     # sprawdzenie czy celownik najeżdża na cel i usunięcie go po trafieniu
-    if mouseX > Jelen.x and mouseX < Jelen.x + Jelen.rozmiar and mouseY > Jelen.y and mouseY < Jelen.y + Jelen.rozmiar:
+    if mouseX > Jelen.x and mouseX < Jelen.x + Jelen.rozmiar and mouseY > Jelen.y and mouseY < Jelen.y + Jelen.rozmiar and pauza == False:
         Jelen.x = -200  # Przesuwa cel za ekran
         Jelen.y = -200
         score += 20
-    if mouseX > Dzik.x and mouseX < Dzik.x + Dzik.rozmiar and mouseY > Dzik.y and mouseY < Dzik.y + Dzik.rozmiar:
+    if mouseX > Dzik.x and mouseX < Dzik.x + Dzik.rozmiar and mouseY > Dzik.y and mouseY < Dzik.y + Dzik.rozmiar and pauza == False:
         Dzik.x = -200
         Dzik.y = -200
         score += 10
-    if mouseX > Zajac.x and mouseX < Zajac.x + Zajac.rozmiar and mouseY > Zajac.y and mouseY < Zajac.y + Zajac.rozmiar:
+    if mouseX > Zajac.x and mouseX < Zajac.x + Zajac.rozmiar and mouseY > Zajac.y and mouseY < Zajac.y + Zajac.rozmiar and pauza == False:
         Zajac.x = -200
         Zajac.y = -200
         score += 30
-    if mouseX > Kotek.x and mouseX < Kotek.x + Kotek.rozmiar and mouseY > Kotek.y and mouseY < Kotek.y + Kotek.rozmiar:
+    if mouseX > Kotek.x and mouseX < Kotek.x + Kotek.rozmiar and mouseY > Kotek.y and mouseY < Kotek.y + Kotek.rozmiar and pauza == False:
         Kotek.x = -200
         Kotek.y = -200
         score = 0
