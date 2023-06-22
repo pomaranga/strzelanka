@@ -25,6 +25,20 @@ class Cel:
         if self.y < 0 or self.y > height-self.rozmiar:
             self.kierunek_y *= -1      
 
+class Boss(Cel):
+    def ruch(self):
+        self.kierunek_x = random.choice([-1, 1])  
+        self.kierunek_y = random.choice([-1, 1])
+        self.x += self.kierunek_x * self.predkosc 
+        self.y += self.kierunek_y * self.predkosc
+        
+        if self.x < 0 or self.x > width-self.rozmiar:
+            self.kierunek_x *= -1  
+        if self.y < 0 or self.y > height-self.rozmiar:
+            self.kierunek_y *= -1
+    def walcz(self):
+        self.x = 200
+        self.y = 300
                       
 Jelen = Cel("Jelen", 15, 7, "data/jelen.png", 100)
 Dzik = Cel("Dzik", 15, 5, "data/dzik.png", 100)
@@ -34,7 +48,9 @@ Bazant = Cel("Bazant", 15,5, "data/bazant.png", 100)
 Sarna = Cel("Sarna", 15, 10, "data/sarna.png", 100)
 Lis = Cel("Lis", 150, 20, "data/lis.png", 100)
 Zyrafa = Cel("Zyrafa", 5, 10, "data/zyrafa.png", 100)
-Boss = Cel("Boss", 100, 5, "data/boss.png", 200)
+BossFaza1 = Boss("BossFaza1", 100, 2, "data/boss.png", 200)
+BossFaza2 = Boss("BossFaza2", 150, 15, "data/bossfaza2.png", 350)
+BossFaza3 = Boss("BossFaza3", 200, 20, "data/bossfaza3.png", 400)
 
 # Dodanie koordynatów celów 
 Jelen.x = 100
@@ -61,15 +77,21 @@ Lis.y = 100
 Zyrafa.x = 250
 Zyrafa.y = 400
 
-Boss.x = 100
-Boss.y = 300
+BossFaza1.x = -200 #chowa bossa poza ekranem na początku gry
+BossFaza1.y = -200
+
+BossFaza2.x = -200
+BossFaza2.y = -200
+
+BossFaza3.x = -200
+BossFaza3.y = -200
 
 start_game = False
 score = 0
 pauza = False
 def setup():
     size(1000, 700)
-    global celownikImg, pauzaImg, startImg, tloImg, restartImg, tlostartImg, wyjscieImg, trafieniabossa
+    global celownikImg, pauzaImg, startImg, tloImg, restartImg, tlostartImg, wyjscieImg
     Jelen.zaladuj_plik(Jelen.sciezka_plik)
     Dzik.zaladuj_plik(Dzik.sciezka_plik)
     Zajac.zaladuj_plik(Zajac.sciezka_plik)
@@ -83,10 +105,11 @@ def setup():
     tloImg = loadImage("data/tlo.jpg")
     Bazant.zaladuj_plik(Bazant.sciezka_plik)
     Sarna.zaladuj_plik(Sarna.sciezka_plik)
-    Boss.zaladuj_plik(Boss.sciezka_plik)
     tlostartImg = loadImage("data/tstart.png")
     wyjscieImg = loadImage("data/exit.png")
-    trafieniabossa = 0
+    BossFaza1.zaladuj_plik(BossFaza1.sciezka_plik)
+    BossFaza2.zaladuj_plik(BossFaza2.sciezka_plik)
+    BossFaza3.zaladuj_plik(BossFaza3.sciezka_plik)
 
 def draw():
     global start_game, tlostartImg
@@ -108,9 +131,12 @@ def draw():
             Kotek.poruszaj()
             Bazant.poruszaj()
             Sarna.poruszaj()
-            Boss.poruszaj()
             Lis.poruszaj()
             Zyrafa.poruszaj()
+            BossFaza1.ruch()
+            BossFaza2.ruch()
+            BossFaza3.ruch()
+            
         elif pauza:
             image(startImg, 450, 300, 100, 100)
     
@@ -122,7 +148,6 @@ def draw():
         image(Sarna.plik, Sarna.x, Sarna.y, Sarna.rozmiar, Sarna.rozmiar)
         image(Lis.plik, Lis.x, Lis.y, Lis.rozmiar, Lis.rozmiar)
         image(Zyrafa.plik, Zyrafa.x, Zyrafa.y, Zyrafa.rozmiar, Zyrafa.rozmiar)
-        image(Boss.plik, Boss.x, Boss.y, Boss.rozmiar, Boss.rozmiar)
         image(restartImg, 10, 70, 50, 50)
         image(celownikImg, mouseX-25, mouseY-25, 50, 50) 
         image(wyjscieImg, 930, 630, 50, 50)
@@ -131,6 +156,52 @@ def draw():
         textSize(23)
         textAlign(RIGHT, TOP)
         text("Score: " + str(score), width - 20, 20)
+        
+        if score > 50:
+            Jelen.x = -200
+            Jelen.y = -200
+            Dzik.x = -200
+            Dzik.y = -200
+            Zajac.x = -200
+            Zajac.y = -200
+            Bazant.x = -200
+            Bazant.y = -200
+            Sarna.x = -200
+            Sarna.y = -200
+            Lis.x = -200
+            Lis.y = -200
+            Zyrafa.x = -200
+            Zyrafa.y = -200
+            Kotek.x = -200
+            Kotek.y = -200 #chowa wszystkie cele poza ekranem, jeśli nie zostały zestrzelone
+            image(BossFaza1.plik, BossFaza1.x, BossFaza1.y, BossFaza1.rozmiar, BossFaza1.rozmiar)
+            image(celownikImg, mouseX-25, mouseY-25, 50, 50)
+            BossFaza1.walcz()
+            
+        if score > 300:
+            BossFaza1.x = -200
+            BossFaza1.y = -200
+            image(BossFaza2.plik, BossFaza2.x, BossFaza2.y, BossFaza2.rozmiar, BossFaza2.rozmiar)
+            image(celownikImg, mouseX-25, mouseY-25, 50, 50)
+            BossFaza2.walcz()
+            
+        if score > 750:
+            BossFaza2.rozmiar = 50
+            BossFaza2.x = -200
+            BossFaza2.y = -200
+            image(BossFaza3.plik, BossFaza3.x, BossFaza3.y, BossFaza3.rozmiar, BossFaza3.rozmiar)
+            image(celownikImg, mouseX-25, mouseY-25, 50, 50)
+            BossFaza3.walcz()
+            
+        if score > 1350:
+            BossFaza3.rozmiar = 50
+            BossFaza3.x = -200
+            BossFaza3.y = -200
+            background(10, 150, 100)
+            fill(255)
+            textSize(30)
+            textAlign(CENTER, CENTER)
+            text(u"Wygrana!!!", width/2, height/2)  
         
 def mousePressed():
     global start_game
@@ -168,12 +239,6 @@ def mouseClicked():
         Sarna.x = -200
         Sarna.y = -200
         score += 20
-    if mouseX > Boss.x and mouseX < Boss.x + Boss.rozmiar and mouseY > Boss.y and mouseY < Boss.y + Boss.rozmiar and pauza == False:
-        score += 100
-        trafieniabossa += 1
-        if trafieniabossa == 3:
-            Boss.x = -200
-            Boss.y = -200
     if mouseX > 10 and mouseX < 60 and mouseY > 70 and mouseY < 120:
         reset()
     if mouseX > Lis.x and mouseX < Lis.x + Lis.rozmiar and mouseY > Lis.y and mouseY < Lis.y + Lis.rozmiar and pauza == False:
@@ -184,6 +249,12 @@ def mouseClicked():
         Zyrafa.x = -200
         Zyrafa.y = -200
         score += 50
+    if mouseX > BossFaza1.x and mouseX < BossFaza1.x + BossFaza1.rozmiar and mouseY > BossFaza1.y and mouseY < BossFaza1.y + BossFaza1.rozmiar and pauza == False:
+        score += BossFaza1.punkty
+    if mouseX > BossFaza2.x and mouseX < BossFaza2.x + BossFaza2.rozmiar and mouseY > BossFaza2.y and mouseY < BossFaza2.y + BossFaza2.rozmiar and pauza == False:
+        score += BossFaza2.punkty
+    if mouseX > BossFaza3.x and mouseX < BossFaza3.x + BossFaza3.rozmiar and mouseY > BossFaza3.y and mouseY < BossFaza3.y + BossFaza3.rozmiar and pauza == False:
+        score += BossFaza3.punkty
     if mouseX > 930 and mouseX < 1000 and mouseY > 630 and mouseY < 700:
         exit()
 
