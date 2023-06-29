@@ -48,6 +48,7 @@ Bazant = Cel("Bazant", 15,5, "data/bazant.png", 100)
 Sarna = Cel("Sarna", 15, 10, "data/sarna.png", 100)
 Lis = Cel("Lis", 150, 20, "data/lis.png", 100)
 Zyrafa = Cel("Zyrafa", 5, 10, "data/zyrafa.png", 100)
+Zaba = Cel("Zaba", 15, 5, "data/zaba.png", 100)
 BossFaza1 = Boss("BossFaza1", 100, 2, "data/boss.png", 200)
 BossFaza2 = Boss("BossFaza2", 150, 15, "data/bossfaza2.png", 350)
 BossFaza3 = Boss("BossFaza3", 200, 20, "data/bossfaza3.png", 400)
@@ -77,6 +78,9 @@ Lis.y = 100
 Zyrafa.x = 250
 Zyrafa.y = 400
 
+Zaba.x = 200
+Zaba.y = 150
+
 BossFaza1.x = -200 #chowa bossa poza ekranem na początku gry
 BossFaza1.y = -200
 
@@ -93,6 +97,7 @@ def setup():
     size(1000, 700)
     global celownikImg, pauzaImg, startImg, tloImg, restartImg, tlostartImg, wyjscieImg
     Jelen.zaladuj_plik(Jelen.sciezka_plik)
+    Zaba.zaladuj_plik(Zaba.sciezka_plik)
     Dzik.zaladuj_plik(Dzik.sciezka_plik)
     Zajac.zaladuj_plik(Zajac.sciezka_plik)
     Lis.zaladuj_plik(Lis.sciezka_plik)
@@ -133,6 +138,7 @@ def draw():
             Sarna.poruszaj()
             Lis.poruszaj()
             Zyrafa.poruszaj()
+            Zaba.poruszaj()
             BossFaza1.ruch()
             BossFaza2.ruch()
             BossFaza3.ruch()
@@ -141,7 +147,8 @@ def draw():
             image(startImg, 450, 300, 100, 100)
     
         image(Jelen.plik, Jelen.x, Jelen.y, Jelen.rozmiar, Jelen.rozmiar)  
-        image(Dzik.plik, Dzik.x, Dzik.y, Dzik.rozmiar, Dzik.rozmiar)  
+        image(Dzik.plik, Dzik.x, Dzik.y, Dzik.rozmiar, Dzik.rozmiar)
+        image(Zaba.plik, Zaba.x, Zaba.y, Zaba.rozmiar, Zaba.rozmiar)  
         image(Zajac.plik, Zajac.x, Zajac.y, Zajac.rozmiar, Zajac.rozmiar)
         image(Kotek.plik, Kotek.x, Kotek.y, Kotek.rozmiar, Kotek.rozmiar)
         image(Bazant.plik, Bazant.x, Bazant.y, Bazant.rozmiar, Bazant.rozmiar)
@@ -172,6 +179,8 @@ def draw():
             Lis.y = -200
             Zyrafa.x = -200
             Zyrafa.y = -200
+            Zaba.x = -200
+            Zaba.y = -200
             Kotek.x = -200
             Kotek.y = -200 #chowa wszystkie cele poza ekranem, jeśli nie zostały zestrzelone
             image(BossFaza1.plik, BossFaza1.x, BossFaza1.y, BossFaza1.rozmiar, BossFaza1.rozmiar)
@@ -219,6 +228,10 @@ def mouseClicked():
         Jelen.x = -200  # Przesuwa cel za ekran
         Jelen.y = -200
         score += 20
+    if mouseX > Zaba.x and mouseX < Zaba.x + Zaba.rozmiar and mouseY > Zaba.y and mouseY < Zaba.y + Zaba.rozmiar and pauza == False:
+        Zaba.x = -200
+        Zaba.y = -200
+        score += 25
     if mouseX > Dzik.x and mouseX < Dzik.x + Dzik.rozmiar and mouseY > Dzik.y and mouseY < Dzik.y + Dzik.rozmiar and pauza == False:
         Dzik.x = -200
         Dzik.y = -200
@@ -285,6 +298,9 @@ def reset():
 
     Zyrafa.x = 250
     Zyrafa.y = 400
+    
+    Zaba.x = 50
+    Zaba.y = 250
 
     Boss.x = 100
     Boss.y = 300
