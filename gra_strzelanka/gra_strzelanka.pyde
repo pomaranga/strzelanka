@@ -306,5 +306,5 @@ def reset():
     Boss.y = 300
     
 def keyPressed():
-    if "L" or "l":
+    if "esc":
         exit()
