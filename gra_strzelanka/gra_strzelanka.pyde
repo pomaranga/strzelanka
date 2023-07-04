@@ -161,7 +161,7 @@ def draw():
         image(Sarna.plik, Sarna.x, Sarna.y, Sarna.rozmiar, Sarna.rozmiar)
         image(Lis.plik, Lis.x, Lis.y, Lis.rozmiar, Lis.rozmiar)
         image(Zyrafa.plik, Zyrafa.x, Zyrafa.y, Zyrafa.rozmiar, Zyrafa.rozmiar)
-        image(Szop.plik, Szop.x, Szop.y, Szop.rozmiar, Szop,rozmiar)
+        image(Szop.plik, Szop.x, Szop.y, Szop.rozmiar, Szop.rozmiar)
         image(restartImg, 10, 70, 50, 50)
         image(celownikImg, mouseX-25, mouseY-25, 50, 50) 
         image(wyjscieImg, 930, 630, 50, 50)
