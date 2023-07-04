@@ -49,6 +49,7 @@ Sarna = Cel("Sarna", 15, 10, "data/sarna.png", 100)
 Lis = Cel("Lis", 150, 20, "data/lis.png", 100)
 Zyrafa = Cel("Zyrafa", 5, 10, "data/zyrafa.png", 100)
 Zaba = Cel("Zaba", 15, 5, "data/zaba.png", 100)
+Szop = Cel("Szop", 10, 5, "data/szop.png", 100)
 BossFaza1 = Boss("BossFaza1", 100, 2, "data/boss.png", 200)
 BossFaza2 = Boss("BossFaza2", 150, 15, "data/bossfaza2.png", 350)
 BossFaza3 = Boss("BossFaza3", 200, 20, "data/bossfaza3.png", 400)
@@ -81,6 +82,9 @@ Zyrafa.y = 400
 Zaba.x = 200
 Zaba.y = 150
 
+Szop.x = 150
+Szop.y = 200
+
 BossFaza1.x = -200 #chowa bossa poza ekranem na początku gry
 BossFaza1.y = -200
 
@@ -99,6 +103,7 @@ def setup():
     Jelen.zaladuj_plik(Jelen.sciezka_plik)
     Zaba.zaladuj_plik(Zaba.sciezka_plik)
     Dzik.zaladuj_plik(Dzik.sciezka_plik)
+    Szop.zaladuj_plik(Szop.sciezka_plik)
     Zajac.zaladuj_plik(Zajac.sciezka_plik)
     Lis.zaladuj_plik(Lis.sciezka_plik)
     Zyrafa.zaladuj_plik(Zyrafa.sciezka_plik)
@@ -139,6 +144,7 @@ def draw():
             Lis.poruszaj()
             Zyrafa.poruszaj()
             Zaba.poruszaj()
+            Szop.poruszaj()
             BossFaza1.ruch()
             BossFaza2.ruch()
             BossFaza3.ruch()
@@ -155,6 +161,7 @@ def draw():
         image(Sarna.plik, Sarna.x, Sarna.y, Sarna.rozmiar, Sarna.rozmiar)
         image(Lis.plik, Lis.x, Lis.y, Lis.rozmiar, Lis.rozmiar)
         image(Zyrafa.plik, Zyrafa.x, Zyrafa.y, Zyrafa.rozmiar, Zyrafa.rozmiar)
+        image(Szop.plik, Szop.x, Szop.y, Szop.rozmiar, Szop,rozmiar)
         image(restartImg, 10, 70, 50, 50)
         image(celownikImg, mouseX-25, mouseY-25, 50, 50) 
         image(wyjscieImg, 930, 630, 50, 50)
@@ -181,6 +188,8 @@ def draw():
             Zyrafa.y = -200
             Zaba.x = -200
             Zaba.y = -200
+            Szop.x = -200
+            Szop.y = -200
             Kotek.x = -200
             Kotek.y = -200 #chowa wszystkie cele poza ekranem, jeśli nie zostały zestrzelone
             image(BossFaza1.plik, BossFaza1.x, BossFaza1.y, BossFaza1.rozmiar, BossFaza1.rozmiar)
@@ -262,6 +271,10 @@ def mouseClicked():
         Zyrafa.x = -200
         Zyrafa.y = -200
         score += 50
+    if mouseX > Szop.x and mouseX < Szop.x + Szop.rozmiar and mouseY > Szop.y and mouseY < Szop.y + Szop.rozmiar and pauza == False:
+        Szop.x = -200
+        Szop.y = -200
+        score += 35
     if mouseX > BossFaza1.x and mouseX < BossFaza1.x + BossFaza1.rozmiar and mouseY > BossFaza1.y and mouseY < BossFaza1.y + BossFaza1.rozmiar and pauza == False:
         score += BossFaza1.punkty
     if mouseX > BossFaza2.x and mouseX < BossFaza2.x + BossFaza2.rozmiar and mouseY > BossFaza2.y and mouseY < BossFaza2.y + BossFaza2.rozmiar and pauza == False:
@@ -301,6 +314,9 @@ def reset():
     
     Zaba.x = 50
     Zaba.y = 250
+
+    Szop.x = 150
+    Szop.y = 200
 
     Boss.x = 100
     Boss.y = 300
