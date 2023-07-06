@@ -217,9 +217,12 @@ def draw():
             BossFaza3.y = -200
             background(10, 150, 100)
             fill(255)
-            textSize(30)
+            textSize(40)
             textAlign(CENTER, CENTER)
-            text(u"Wygrana!!!", width/2, height/2)  
+            text("Game Over", width/2, height/2 - 50)
+            text("Score: " + str(score), width/2, height/2)
+            textSize(20)
+            text("Click to exit", width/2, height/2 + 50)  
         
 def mousePressed():
     global start_game
@@ -285,8 +288,9 @@ def mouseClicked():
         exit()
 
 def reset():
-    global score, trafieniabossa
+    global score, trafieniabossa, gameOver
     score = 0
+    gameOver = False
     trafieniabossa = 0
     Jelen.x = 100
     Jelen.y = 50
@@ -320,7 +324,7 @@ def reset():
 
     Boss.x = 100
     Boss.y = 300
-    
+
 def keyPressed():
     if "esc":
         exit()
