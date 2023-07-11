@@ -171,7 +171,7 @@ def draw():
         textAlign(RIGHT, TOP)
         text("Score: " + str(score), width - 20, 20)
         
-        if score > 50:
+        if score >= 150:
             Jelen.x = -200
             Jelen.y = -200
             Dzik.x = -200
@@ -219,10 +219,10 @@ def draw():
             fill(255)
             textSize(40)
             textAlign(CENTER, CENTER)
-            text("Game Over", width/2, height/2 - 50)
+            text("YOU WON", width/2, height/2 - 50)
             text("Score: " + str(score), width/2, height/2)
             textSize(20)
-            text("Click to exit", width/2, height/2 + 50)  
+            text("Press ESC to exit", width/2, height/2 + 50)  
         
 def mousePressed():
     global start_game
@@ -326,5 +326,5 @@ def reset():
     Boss.y = 300
 
 def keyPressed():
-    if "esc":
-        exit()
+        if keyCode == ESC:
+            exit()
