@@ -50,6 +50,7 @@ Lis = Cel("Lis", 150, 20, "data/lis.png", 100)
 Zyrafa = Cel("Zyrafa", 5, 10, "data/zyrafa.png", 100)
 Zaba = Cel("Zaba", 15, 5, "data/zaba.png", 100)
 Szop = Cel("Szop", 10, 5, "data/szop.png", 100)
+Los = Cel("Los", 10, 5, "data/los.png", 100)
 BossFaza1 = Boss("BossFaza1", 100, 2, "data/boss.png", 200)
 BossFaza2 = Boss("BossFaza2", 150, 15, "data/bossfaza2.png", 350)
 BossFaza3 = Boss("BossFaza3", 200, 20, "data/bossfaza3.png", 400)
@@ -84,6 +85,9 @@ Zaba.y = 150
 
 Szop.x = 150
 Szop.y = 200
+
+Los.x = 350
+Los.y = 350
 
 BossFaza1.x = -200 #chowa bossa poza ekranem na początku gry
 BossFaza1.y = -200
@@ -120,6 +124,7 @@ def setup():
     BossFaza1.zaladuj_plik(BossFaza1.sciezka_plik)
     BossFaza2.zaladuj_plik(BossFaza2.sciezka_plik)
     BossFaza3.zaladuj_plik(BossFaza3.sciezka_plik)
+    Los.zaladuj_plik(Los.sciezka_plik)
 
 def draw():
     global start_game, tlostartImg
@@ -145,6 +150,7 @@ def draw():
             Zyrafa.poruszaj()
             Zaba.poruszaj()
             Szop.poruszaj()
+            Los.poruszaj()
             BossFaza1.ruch()
             BossFaza2.ruch()
             BossFaza3.ruch()
@@ -162,6 +168,7 @@ def draw():
         image(Lis.plik, Lis.x, Lis.y, Lis.rozmiar, Lis.rozmiar)
         image(Zyrafa.plik, Zyrafa.x, Zyrafa.y, Zyrafa.rozmiar, Zyrafa.rozmiar)
         image(Szop.plik, Szop.x, Szop.y, Szop.rozmiar, Szop.rozmiar)
+        image(Los.plik, Los.x, Los.y, Los.rozmiar, Los.rozmiar)
         image(restartImg, 10, 70, 50, 50)
         image(celownikImg, mouseX-25, mouseY-25, 50, 50) 
         image(wyjscieImg, 930, 630, 50, 50)
@@ -191,7 +198,9 @@ def draw():
             Szop.x = -200
             Szop.y = -200
             Kotek.x = -200
-            Kotek.y = -200 #chowa wszystkie cele poza ekranem, jeśli nie zostały zestrzelone
+            Kotek.y = -200
+            Los.x = -200
+            Los.y = -200 #chowa wszystkie cele poza ekranem, jeśli nie zostały zestrzelone
             image(BossFaza1.plik, BossFaza1.x, BossFaza1.y, BossFaza1.rozmiar, BossFaza1.rozmiar)
             image(celownikImg, mouseX-25, mouseY-25, 50, 50)
             BossFaza1.walcz()
@@ -278,6 +287,10 @@ def mouseClicked():
         Szop.x = -200
         Szop.y = -200
         score += 35
+    if mouseX > Los.x and mouseX < Los.x + Los.rozmiar and mouseY > Los.y and mouseY < Los.y + Los.rozmiar and pauza == False:
+        Los.x = -200
+        Los.y= - 200
+        score += 20
     if mouseX > BossFaza1.x and mouseX < BossFaza1.x + BossFaza1.rozmiar and mouseY > BossFaza1.y and mouseY < BossFaza1.y + BossFaza1.rozmiar and pauza == False:
         score += BossFaza1.punkty
     if mouseX > BossFaza2.x and mouseX < BossFaza2.x + BossFaza2.rozmiar and mouseY > BossFaza2.y and mouseY < BossFaza2.y + BossFaza2.rozmiar and pauza == False:
@@ -321,6 +334,9 @@ def reset():
 
     Szop.x = 150
     Szop.y = 200
+    
+    Los.x = 350
+    Los.y = 350
 
     Boss.x = 100
     Boss.y = 300
